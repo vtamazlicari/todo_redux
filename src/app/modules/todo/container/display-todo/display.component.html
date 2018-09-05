@@ -1,0 +1,21 @@
+<table class="table table-hover" *ngIf="tasks">
+  <thead>
+  <tr>
+    <td>Task Id</td>
+    <td>Task Name</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let task of tasks | async, let i = index">
+    <td>{{ task.id }}</td>
+    <td>{{ task.name }}</td>
+    <td>
+      <button (click)="deleteTodo(i)" class="btn btn-danger">Delete</button>
+    </td>
+    <td>
+      <button (click)="openEditModal(i)" class="btn btn-success">Edit</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
