@@ -7,6 +7,7 @@ import {TodoListComponent} from './container/todo-list/todo-list.component';
 import {TodoRoute} from './todo.route';
 import {DisplayComponent} from './container/display-todo/display.component';
 import {TodoModalComponent} from './container/todo-list/todo-modal/todo-modal.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {TodoModalComponent} from './container/todo-list/todo-modal/todo-modal.co
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
+    HttpClientModule
   ],
   declarations: [
     TodoListComponent,

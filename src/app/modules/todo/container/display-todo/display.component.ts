@@ -6,7 +6,7 @@ import {Store} from '@ngrx/store';
 import {Todo} from '../../../../shared/models/todo.model';
 import {AppState} from '../../../../store/todo/todo.state';
 import {TodoModalComponent} from '../todo-list/todo-modal/todo-modal.component';
-import {DELETE_TASK} from '../../../../shared/constants/constants';
+import {DeleteTodo, GetTodos} from '../../../../store/todo/todo.actions';
 
 
 @Component({
@@ -24,18 +24,20 @@ export class DisplayComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getTodos();
   }
 
-  deleteTodo(index) {
-    this.store.dispatch({
-      type: DELETE_TASK,
-      payload: index,
-    });
+  getTodos() {
+    this.store.dispatch(new GetTodos());
   }
 
-  openEditModal(index) {
+  deleteTodo(task) {
+    this.store.dispatch(new DeleteTodo(task));
+  }
+
+  openEditModal(task) {
     const initialState = {
-      item: index,
+      item: task,
     };
     this.bsModalRef = this.modalService.show(TodoModalComponent, {initialState});
   }

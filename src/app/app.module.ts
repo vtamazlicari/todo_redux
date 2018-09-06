@@ -8,6 +8,8 @@ import {addTaskReducer} from './store/todo/todo.reducers';
 import {CoreModule} from './core/core.module';
 import {appRoutes} from './app.route';
 import {ModalModule} from 'ngx-bootstrap';
+import {EffectsModule} from '@ngrx/effects';
+import {TodoEffects} from './store/todo/todo.effects';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import {ModalModule} from 'ngx-bootstrap';
     NgbModule.forRoot(),
     StoreModule.forRoot({
       todo: addTaskReducer
-    })
+    }),
+    EffectsModule.forRoot([TodoEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

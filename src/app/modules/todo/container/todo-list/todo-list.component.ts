@@ -3,8 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {AppState} from '../../../../store/todo/todo.state';
-import {Todo} from 'src/app/shared/models/todo.model';
-import {ADD_TASK} from '../../../../shared/constants/constants';
+import {CreateTodo} from 'src/app/store/todo/todo.actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -28,13 +27,7 @@ export class TodoListComponent implements OnInit {
   }
 
   addTodo(id, name) {
-    this.store.dispatch({
-      type: ADD_TASK,
-      payload: <Todo> {
-        id: id,
-        name: name,
-      },
-    });
+    this.store.dispatch(new CreateTodo({id: id, name: name}));
   }
 
   ngOnInit() {

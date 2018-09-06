@@ -3,9 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BsModalRef} from 'ngx-bootstrap';
 import {Store} from '@ngrx/store';
 
-import {Todo} from '../../../../../shared/models/todo.model';
 import {AppState} from '../../../../../store/todo/todo.state';
-import {EDIT_TASK} from '../../../../../shared/constants/constants';
+import {EditTodo} from '../../../../../store/todo/todo.actions';
 
 @Component({
   selector: 'app-todo-modal',
@@ -25,20 +24,12 @@ export class TodoModalComponent implements OnInit {
 
   createForm() {
     this.angForm = this.formBuilder.group({
-      id: ['', Validators.required],
       name: ['', Validators.required]
     });
   }
 
-  editTodo(id, name) {
-    this.store.dispatch({
-      type: EDIT_TASK,
-      index: this.item,
-      payload: <Todo> {
-        id: id,
-        name: name,
-      },
-    });
+  editTodo(name) {
+    this.store.dispatch(new EditTodo({newItem: {id: this.item.id, name: name}, curentItem: this.item}));
     this.itemModalRef.hide();
   }
 

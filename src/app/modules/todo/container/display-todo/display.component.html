@@ -10,10 +10,10 @@
     <td>{{ task.id }}</td>
     <td>{{ task.name }}</td>
     <td>
-      <button (click)="deleteTodo(i)" class="btn btn-danger">Delete</button>
+      <button (click)="deleteTodo(task)" class="btn btn-danger">Delete</button>
     </td>
     <td>
-      <button (click)="openEditModal(i)" class="btn btn-success">Edit</button>
+      <button (click)="openEditModal(task)" class="btn btn-success">Edit</button>
     </td>
   </tr>
   </tbody>

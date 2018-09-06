@@ -1,25 +1,16 @@
 {
-  "todos": [
+  "todo": [
     {
-      "id": "",
-      "name": "name1",
-      "finished": false,
-      "date": "10/10/2018",
-      "description": "gfsdadaaasddgsgdd"
+      "id": "1",
+      "name": "name1"
     },
     {
-      "name": "asdfasfas",
-      "id": "4WFcOIF",
-      "finished": false,
-      "date": "2018-07-12",
-      "description": "fdsafasdfasdf"
+      "id": "2",
+      "name": "name2"
     },
     {
-      "name": "asdfasfasfdasfasdf",
-      "id": "lu8p5un",
-      "finished": false,
-      "date": "2018-07-16",
-      "description": "fdsafasdfasdffdsafasfaf"
+      "id": "3",
+      "name": "name4"
     }
   ]
 }

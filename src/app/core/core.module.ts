@@ -6,11 +6,13 @@ import {FooterComponent} from './components/footer/footer.component';
 import {LayoutComponent} from './components/layout/layout.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    HttpClientModule
   ],
   declarations: [HeaderComponent, FooterComponent, LayoutComponent, NavbarComponent],
   exports: [HeaderComponent, FooterComponent, LayoutComponent, NavbarComponent],
