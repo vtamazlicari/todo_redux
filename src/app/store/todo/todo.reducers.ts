@@ -6,12 +6,28 @@ export function addTaskReducer(state: Todo[] = [], action) {
     case ADD_TASK:
       return [...state, action.payload];
     case DELETE_TASK:
-      state.splice(action.payload, 1);
-      return state;
+      return removeItem(state, action);
     case EDIT_TASK:
-      state.splice(action.index, 1, action.payload);
-      return state;
+          return updateObjectInArray(state, action);
     default:
       return state;
   }
+}
+
+function removeItem(array, action) {
+  const newArray = array.slice();
+  newArray.splice(action.index, 1);
+  return newArray;
+}
+
+function updateObjectInArray(array, action) {
+  return array.map( (item, index) => {
+    if (index !== action.index) {
+      return item;
+    }
+    return {
+      ...item,
+      ...action.payload
+    };
+  });
 }
