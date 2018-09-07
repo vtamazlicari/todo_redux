@@ -6,8 +6,8 @@ import {
   DELETE_TASK,
   DELETE_TASK_SUCCESS, EDIT_TASK, EDIT_TASK_SUCCESS,
   GET_TASKS,
-  GET_TASKS_SUCCESS
-} from '../../shared/constants/constants';
+  GET_TASKS_SUCCESS, REQUEST_ERROR
+} from '../../../shared/constants/constants';
 
 export class GetTodos implements Action {
   readonly type = GET_TASKS;
@@ -15,6 +15,13 @@ export class GetTodos implements Action {
 
 export class GetTodosSuccess implements Action {
   readonly type = GET_TASKS_SUCCESS;
+
+  constructor(public payload: any) {
+  }
+}
+
+export class RequestError implements Action {
+  readonly type = REQUEST_ERROR;
 
   constructor(public payload: any) {
   }

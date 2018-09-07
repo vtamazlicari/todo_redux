@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {of, Observable} from 'rxjs';
-import {catchError, exhaustMap, map, mergeMap, tap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {catchError, map, mergeMap} from 'rxjs/operators';
 import {Action} from '@ngrx/store';
 import {HttpClient} from '@angular/common/http';
 
-import {environment} from '../../../environments/environment';
 import {
   CreateTodo,
   CreateTodoSuccess,
@@ -14,9 +13,10 @@ import {
   EditTodo,
   EditTodoSuccess,
   GetTodos,
-  GetTodosSuccess
-} from './todo.actions';
-import {ADD_TASK, DELETE_TASK, EDIT_TASK, GET_TASKS} from '../../shared/constants/constants';
+  GetTodosSuccess, RequestError
+} from '../actions/todo.actions';
+import {ADD_TASK, DELETE_TASK, EDIT_TASK, GET_TASKS} from '../../../shared/constants/constants';
+import {BkService} from '../../../core/services/bk.service';
 
 @Injectable()
 export class TodoEffects {
@@ -24,10 +24,11 @@ export class TodoEffects {
   GetTodos$: Observable<Action> = this.actions$.pipe(
     ofType<GetTodos>(GET_TASKS)
     , mergeMap(action =>
-      this.http.get(environment.base_url + '/todo').pipe(
+      this.bkService.httpRequest('GET', '/todo').pipe(
         map((data: Response) => {
           return new GetTodosSuccess(data);
-        })
+        }),
+        catchError((error) => of(new RequestError({error: error})))
       )
     )
   );
@@ -36,10 +37,12 @@ export class TodoEffects {
   createTodo$: Observable<Action> = this.actions$.pipe(
     ofType<CreateTodo>(ADD_TASK)
     , mergeMap(action =>
-      this.http.post(environment.base_url + '/todo', action.payload).pipe(
+      this.bkService.httpRequest('POST', '/todo', action.payload).pipe(
         map((data: Response) => {
+          console.log(action);
           return new CreateTodoSuccess(data);
-        })
+        }),
+        catchError((error) => of(new RequestError(error)))
       )
     )
   );
@@ -48,10 +51,11 @@ export class TodoEffects {
   deleteTodo$: Observable<Action> = this.actions$.pipe(
     ofType<DeleteTodo>(DELETE_TASK)
     , mergeMap(action =>
-      this.http.delete(environment.base_url + '/todo/' + action.payload.id).pipe(
+      this.bkService.httpRequest('DELETE', '/todo/' + action.payload.id).pipe(
         map((data: Response) => {
           return new DeleteTodoSuccess(action.payload);
-        })
+        }),
+        catchError((error) => of(new RequestError(error)))
       )
     )
   );
@@ -60,17 +64,19 @@ export class TodoEffects {
   editTodo$: Observable<Action> = this.actions$.pipe(
     ofType<EditTodo>(EDIT_TASK)
     , mergeMap(action =>
-    this.http.put(environment.base_url + '/todo/' + action.payload.curentItem.id, action.payload.newItem).pipe(
-      map((data: Response) => {
-        return new EditTodoSuccess(action.payload);
-      })
-    ))
+      this.bkService.httpRequest('PUT', '/todo/' + action.payload.curentItem.id, action.payload.newItem).pipe(
+        map((data: Response) => {
+          return new EditTodoSuccess(action.payload);
+        }),
+        catchError((error) => of(new RequestError(error)))
+      ))
   );
 
 
   constructor(
     private actions$: Actions,
-    private http: HttpClient
+    private http: HttpClient,
+    private bkService: BkService
   ) {
   }
 }

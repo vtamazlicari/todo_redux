@@ -6,16 +6,15 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let task of tasks | async, let i = index">
-    <td>{{ task.id }}</td>
-    <td>{{ task.name }}</td>
-    <td>
-      <button (click)="deleteTodo(task)" class="btn btn-danger">Delete</button>
-    </td>
-    <td>
-      <button (click)="openEditModal(task)" class="btn btn-success">Edit</button>
-    </td>
+  <tr *ngFor="let task of tasks | async">
+      <td>{{ task.id }}</td>
+      <td>{{ task.name }}</td>
+      <td>
+        <button (click)="deleteTodo(task)" class="btn btn-danger">Delete</button>
+      </td>
+      <td>
+        <button (click)="openEditModal(task)" class="btn btn-success">Edit</button>
+      </td>
   </tr>
   </tbody>
 </table>
-

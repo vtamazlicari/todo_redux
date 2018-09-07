@@ -14,9 +14,9 @@ export class BkService {
   constructor(private http: HttpClient) {
   }
 
-  httpRequest(method, url) {
+  httpRequest(method, url, optionToSend?) {
     return Observable.create((observer) => {
-      return this.http.request(method, this.URL + url).subscribe(
+      return this.http.request(method, this.URL + url, {body: optionToSend, responseType: 'json'}).subscribe(
         (res) => {
           observer.next(res);
           observer.complete();

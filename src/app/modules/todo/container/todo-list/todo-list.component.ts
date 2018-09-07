@@ -2,8 +2,8 @@ import {Store} from '@ngrx/store';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {AppState} from '../../../../store/todo/todo.state';
-import {CreateTodo} from 'src/app/store/todo/todo.actions';
+import {AppState} from '../../store/todo.state';
+import {CreateTodo} from 'src/app/modules/todo/actions/todo.actions';
 
 @Component({
   selector: 'app-todo-list',

@@ -1,4 +1,4 @@
-import {Todo} from '../../shared/models/todo.model';
+import {Todo} from '../../../shared/models/todo.model';
 import {
   ADD_TASK,
   ADD_TASK_SUCCESS,
@@ -6,8 +6,8 @@ import {
   DELETE_TASK_SUCCESS,
   EDIT_TASK, EDIT_TASK_SUCCESS,
   GET_TASKS,
-  GET_TASKS_SUCCESS
-} from '../../shared/constants/constants';
+  GET_TASKS_SUCCESS, REQUEST_ERROR
+} from '../../../shared/constants/constants';
 
 export function addTaskReducer(state: Todo[] = [], action) {
   switch (action.type) {
@@ -27,6 +27,8 @@ export function addTaskReducer(state: Todo[] = [], action) {
       return [...state];
     case EDIT_TASK_SUCCESS:
       return updateObjectInArray(state, action);
+    case REQUEST_ERROR:
+      return action.error;
     default:
       return state;
   }

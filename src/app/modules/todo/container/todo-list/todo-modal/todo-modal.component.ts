@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BsModalRef} from 'ngx-bootstrap';
 import {Store} from '@ngrx/store';
 
-import {AppState} from '../../../../../store/todo/todo.state';
-import {EditTodo} from '../../../../../store/todo/todo.actions';
+import {AppState} from '../../../store/todo.state';
+import {EditTodo} from '../../../actions/todo.actions';
 
 @Component({
   selector: 'app-todo-modal',

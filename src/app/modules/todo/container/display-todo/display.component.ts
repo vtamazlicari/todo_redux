@@ -4,9 +4,9 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {Store} from '@ngrx/store';
 
 import {Todo} from '../../../../shared/models/todo.model';
-import {AppState} from '../../../../store/todo/todo.state';
+import {AppState} from '../../store/todo.state';
 import {TodoModalComponent} from '../todo-list/todo-modal/todo-modal.component';
-import {DeleteTodo, GetTodos} from '../../../../store/todo/todo.actions';
+import {DeleteTodo, GetTodos} from '../../actions/todo.actions';
 
 
 @Component({
