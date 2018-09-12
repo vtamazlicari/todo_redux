@@ -1,5 +1,19 @@
 import {Todo} from '../../../shared/models/todo.model';
+import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 
-export interface AppState {
-  readonly todo: Todo[];
+export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>();
+
+
+export interface TodoState extends Todo {
+  isLoading: boolean;
+  error: any;
+}
+
+export interface TodoListState {
+  todo: TodoState[];
+}
+
+export interface State extends EntityState<Todo> {
+  isLoading?: boolean;
+  error?: any;
 }

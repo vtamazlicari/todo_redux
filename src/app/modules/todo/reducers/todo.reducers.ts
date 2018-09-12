@@ -8,27 +8,37 @@ import {
   GET_TASKS,
   GET_TASKS_SUCCESS, REQUEST_ERROR
 } from '../../../shared/constants/constants';
+import {adapter, TodoListState, TodoState, State} from '../store/todo.state';
+import {Actions} from '../actions/todo.actions';
 
-export function addTaskReducer(state: Todo[] = [], action) {
+export const initialState: State = adapter.getInitialState(
+  {
+    isLoading: false,
+    error: null
+  }
+);
+
+export function addTaskReducer(state = initialState, action: Actions) {
   switch (action.type) {
     case GET_TASKS:
-      return [...state];
-    case ADD_TASK:
-      return [...state];
+      return {error: null, isLoading: true, ...state};
     case GET_TASKS_SUCCESS:
-      return [...state, ...action.payload];
+      return adapter.addMany(action.payload.data, {...state, isLoading: false, error: null});
+    case ADD_TASK:
+      return {...state, isLoading: true, error: null};
     case ADD_TASK_SUCCESS:
-      return [...state, action.payload];
+      return adapter.addOne(action.payload, {...state, isLoading: false, error: null});
     case DELETE_TASK:
-      return [...state];
+      return {...state, isLoading: true, error: null};
     case DELETE_TASK_SUCCESS:
-      return removeItem(state, action);
+      return adapter.removeOne(action.payload.id, {...state, isLoading: false, error: null});
     case EDIT_TASK:
-      return [...state];
+      return {...state, isLoading: true, error: null};
     case EDIT_TASK_SUCCESS:
-      return updateObjectInArray(state, action);
+      debugger
+      return adapter.updateOne(action.payload.newItem, {...state, isLoading: false, error: null});
     case REQUEST_ERROR:
-      return action.error;
+      return {...state, isLoading: false, error: action.payload.error};
     default:
       return state;
   }
@@ -36,7 +46,7 @@ export function addTaskReducer(state: Todo[] = [], action) {
 
 function removeItem(array, action) {
   const newArray = array.filter(element => element.id !== action.payload.id);
-  return newArray;
+  return {todo: newArray, isLoading: false, error: null};
 }
 
 function updateObjectInArray(array, action) {
@@ -45,8 +55,17 @@ function updateObjectInArray(array, action) {
       return item;
     }
     return {
-      ...item,
-      ...action.payload.newItem
+        ...item,
+      isLoading: false,
+      error: null
     };
   });
 }
+
+export const {
+  selectAll,
+  selectEntities,
+  selectIds,
+  selectTotal
+
+} = adapter.getSelectors();

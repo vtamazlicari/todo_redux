@@ -25,10 +25,10 @@ export class TodoEffects {
     ofType<GetTodos>(GET_TASKS)
     , mergeMap(action =>
       this.bkService.httpRequest('GET', '/todo').pipe(
-        map((data: Response) => {
-          return new GetTodosSuccess(data);
+        map((data) => {
+          return new GetTodosSuccess({data});
         }),
-        catchError((error) => of(new RequestError({error: error})))
+        catchError((error) => of(new RequestError({error})))
       )
     )
   );
@@ -39,10 +39,9 @@ export class TodoEffects {
     , mergeMap(action =>
       this.bkService.httpRequest('POST', '/todo', action.payload).pipe(
         map((data: Response) => {
-          console.log(action);
           return new CreateTodoSuccess(data);
         }),
-        catchError((error) => of(new RequestError(error)))
+        catchError((error) => of(new RequestError({error})))
       )
     )
   );
@@ -55,7 +54,7 @@ export class TodoEffects {
         map((data: Response) => {
           return new DeleteTodoSuccess(action.payload);
         }),
-        catchError((error) => of(new RequestError(error)))
+        catchError((error) => of(new RequestError({error})))
       )
     )
   );
@@ -68,7 +67,7 @@ export class TodoEffects {
         map((data: Response) => {
           return new EditTodoSuccess(action.payload);
         }),
-        catchError((error) => of(new RequestError(error)))
+        catchError((error) => of(new RequestError({error})))
       ))
   );
 

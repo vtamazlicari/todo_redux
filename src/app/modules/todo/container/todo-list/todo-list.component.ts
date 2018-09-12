@@ -2,7 +2,7 @@ import {Store} from '@ngrx/store';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {AppState} from '../../store/todo.state';
+import {TodoListState} from '../../store/todo.state';
 import {CreateTodo} from 'src/app/modules/todo/actions/todo.actions';
 
 @Component({
@@ -14,7 +14,7 @@ import {CreateTodo} from 'src/app/modules/todo/actions/todo.actions';
 export class TodoListComponent implements OnInit {
   angForm: FormGroup;
 
-  constructor(private store: Store<AppState>,
+  constructor(private store: Store<TodoListState>,
               private fb: FormBuilder) {
     this.createForm();
   }

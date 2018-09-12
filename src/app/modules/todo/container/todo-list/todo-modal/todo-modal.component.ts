@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BsModalRef} from 'ngx-bootstrap';
 import {Store} from '@ngrx/store';
 
-import {AppState} from '../../../store/todo.state';
+import {TodoListState} from '../../../store/todo.state';
 import {EditTodo} from '../../../actions/todo.actions';
 
 @Component({
   selector: 'app-todo-modal',
   templateUrl: './todo-modal.component.html',
-  styleUrls: ['./todo-modal.component.css']
+  styleUrls: ['./todo-modal.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoModalComponent implements OnInit {
 
@@ -17,7 +18,7 @@ export class TodoModalComponent implements OnInit {
   item;
 
   constructor(private formBuilder: FormBuilder,
-              private store: Store<AppState>,
+              private store: Store<TodoListState>,
               public itemModalRef: BsModalRef) {
     this.createForm();
   }

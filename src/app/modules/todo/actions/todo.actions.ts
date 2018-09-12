@@ -8,6 +8,7 @@ import {
   GET_TASKS,
   GET_TASKS_SUCCESS, REQUEST_ERROR
 } from '../../../shared/constants/constants';
+import {Todo} from '../../../shared/models/todo.model';
 
 export class GetTodos implements Action {
   readonly type = GET_TASKS;
@@ -16,14 +17,14 @@ export class GetTodos implements Action {
 export class GetTodosSuccess implements Action {
   readonly type = GET_TASKS_SUCCESS;
 
-  constructor(public payload: any) {
+  constructor(public payload: { data: any }) {
   }
 }
 
 export class RequestError implements Action {
   readonly type = REQUEST_ERROR;
 
-  constructor(public payload: any) {
+  constructor(public payload: { error: any }) {
   }
 }
 
@@ -68,3 +69,13 @@ export class EditTodoSuccess implements Action {
   constructor(public payload: any) {
   }
 }
+
+export type Actions = GetTodos
+  | GetTodosSuccess
+  | RequestError
+  | CreateTodo
+  | CreateTodoSuccess
+  | DeleteTodo
+  | DeleteTodoSuccess
+  | EditTodo
+  | EditTodoSuccess;
