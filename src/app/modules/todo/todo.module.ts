@@ -10,6 +10,7 @@ import {TodoModalComponent} from './container/todo-list/todo-modal/todo-modal.co
 import {HttpClientModule} from '@angular/common/http';
 import {StoreModule} from '@ngrx/store';
 import {addTaskReducer} from './reducers/todo.reducers';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {addTaskReducer} from './reducers/todo.reducers';
     ReactiveFormsModule,
     ModalModule.forRoot(),
     HttpClientModule,
-    StoreModule.forFeature('todo', addTaskReducer)
+    StoreModule.forFeature('todo', addTaskReducer),
+    SharedModule
   ],
   declarations: [
     TodoListComponent,

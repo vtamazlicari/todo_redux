@@ -1,9 +1,4 @@
-<div *ngIf="error$ | async as object">
-  <div class="alert alert-danger">
-    <strong>Error!</strong> {{errorMessage}}
-  </div>
-</div>
-
+<template #errorRequest></template>
 <table class="table table-hover" *ngIf="tasks">
   <thead>
   <tr>
@@ -24,9 +19,3 @@
   </tr>
   </tbody>
 </table>
-
-<ng-template #errorRequest>
-  <div class="alert alert-danger">
-    <strong>Error!</strong> Server error!
-  </div>
-</ng-template>

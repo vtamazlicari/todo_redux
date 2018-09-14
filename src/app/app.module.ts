@@ -22,7 +22,7 @@ import {reducers} from './modules/todo/selectors/selectors';
     ModalModule.forRoot(),
     NgbModule.forRoot(),
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([TodoEffects])
+    EffectsModule.forRoot([TodoEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]
