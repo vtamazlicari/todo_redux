@@ -3,14 +3,8 @@ import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 
 export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>();
 
-
-export interface TodoState extends Todo {
-  isLoading: boolean;
-  error: any;
-}
-
 export interface TodoListState {
-  todo: TodoState[];
+  todo: State[];
 }
 
 export interface State extends EntityState<Todo> {

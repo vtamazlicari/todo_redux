@@ -8,6 +8,8 @@ import {TodoRoute} from './todo.route';
 import {DisplayComponent} from './container/display-todo/display.component';
 import {TodoModalComponent} from './container/todo-list/todo-modal/todo-modal.component';
 import {HttpClientModule} from '@angular/common/http';
+import {StoreModule} from '@ngrx/store';
+import {addTaskReducer} from './reducers/todo.reducers';
 
 @NgModule({
   imports: [
@@ -16,7 +18,8 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forFeature('todo', addTaskReducer)
   ],
   declarations: [
     TodoListComponent,

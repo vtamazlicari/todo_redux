@@ -1,4 +1,3 @@
-import {Todo} from '../../../shared/models/todo.model';
 import {
   ADD_TASK,
   ADD_TASK_SUCCESS,
@@ -8,7 +7,7 @@ import {
   GET_TASKS,
   GET_TASKS_SUCCESS, REQUEST_ERROR
 } from '../../../shared/constants/constants';
-import {adapter, TodoListState, TodoState, State} from '../store/todo.state';
+import {adapter, State} from '../store/todo.state';
 import {Actions} from '../actions/todo.actions';
 
 export const initialState: State = adapter.getInitialState(
@@ -35,31 +34,13 @@ export function addTaskReducer(state = initialState, action: Actions) {
     case EDIT_TASK:
       return {...state, isLoading: true, error: null};
     case EDIT_TASK_SUCCESS:
-      debugger
-      return adapter.updateOne(action.payload.newItem, {...state, isLoading: false, error: null});
+      console.log(action);
+      return adapter.updateOne({id: action.id, changes: action.changes}, {...state, isLoading: false, error: null});
     case REQUEST_ERROR:
       return {...state, isLoading: false, error: action.payload.error};
     default:
       return state;
   }
-}
-
-function removeItem(array, action) {
-  const newArray = array.filter(element => element.id !== action.payload.id);
-  return {todo: newArray, isLoading: false, error: null};
-}
-
-function updateObjectInArray(array, action) {
-  return array.map( (item) => {
-    if (item.id !== action.payload.curentItem.id) {
-      return item;
-    }
-    return {
-        ...item,
-      isLoading: false,
-      error: null
-    };
-  });
 }
 
 export const {

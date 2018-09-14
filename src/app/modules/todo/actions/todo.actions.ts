@@ -66,7 +66,8 @@ export class EditTodo implements Action {
 export class EditTodoSuccess implements Action {
   readonly type = EDIT_TASK_SUCCESS;
 
-  constructor(public payload: any) {
+  constructor(public id: string,
+              public changes: Partial<Todo>) {
   }
 }
 

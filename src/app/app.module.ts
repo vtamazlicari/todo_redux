@@ -4,12 +4,12 @@ import {StoreModule} from '@ngrx/store';
 
 import {AppComponent} from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {addTaskReducer} from './modules/todo/reducers/todo.reducers';
 import {CoreModule} from './core/core.module';
 import {appRoutes} from './app.route';
 import {ModalModule} from 'ngx-bootstrap';
 import {EffectsModule} from '@ngrx/effects';
 import {TodoEffects} from './modules/todo/effects/todo.effects';
+import {reducers} from './modules/todo/selectors/selectors';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,7 @@ import {TodoEffects} from './modules/todo/effects/todo.effects';
     BrowserModule,
     ModalModule.forRoot(),
     NgbModule.forRoot(),
-    StoreModule.forRoot({
-      todo: addTaskReducer
-    }),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([TodoEffects])
   ],
   providers: [],
