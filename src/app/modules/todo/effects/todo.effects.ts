@@ -65,7 +65,7 @@ export class TodoEffects {
     , mergeMap(action =>
       this.bkService.httpRequest('PUT', '/todo/' + action.payload.curentItem.id, action.payload.newItem).pipe(
         map((data: Response) => {
-          return new EditTodoSuccess(action.payload.newItem.id, action.payload.newItem.name);
+          return new EditTodoSuccess(action.payload.newItem.id, action.payload.newItem);
         }),
         catchError((error) => of(new RequestError({error})))
       ))

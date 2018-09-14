@@ -34,7 +34,6 @@ export function addTaskReducer(state = initialState, action: Actions) {
     case EDIT_TASK:
       return {...state, isLoading: true, error: null};
     case EDIT_TASK_SUCCESS:
-      console.log(action);
       return adapter.updateOne({id: action.id, changes: action.changes}, {...state, isLoading: false, error: null});
     case REQUEST_ERROR:
       return {...state, isLoading: false, error: action.payload.error};
