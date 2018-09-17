@@ -50,7 +50,7 @@ export class TodoEffects {
   deleteTodo$: Observable<Action> = this.actions$.pipe(
     ofType<DeleteTodo>(DELETE_TASK)
     , mergeMap(action =>
-      this.bkService.httpRequest('DELETE', '/tdo/' + action.payload.id).pipe(
+      this.bkService.httpRequest('DELETE', '/todo/' + action.payload.id).pipe(
         map((data: Response) => {
           return new DeleteTodoSuccess(action.payload);
         }),

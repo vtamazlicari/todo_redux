@@ -1,0 +1,19 @@
+{
+	"pluralization": {
+		"form": {
+			"button_add": "Add task",
+			"button_delete": "Delete task",
+			"button_edit": "Edit task",
+			"id": "Task id",
+			"name": "Task name"
+		},
+		"form_control": {
+			"require": {
+				"id": "Id is required.",
+				"name": "Name is required."
+			}
+		},
+		"language": "Language",
+		"text": "Add, delete or modify tasks in our application."
+	}
+}

@@ -10,6 +10,14 @@ import {ModalModule} from 'ngx-bootstrap';
 import {EffectsModule} from '@ngrx/effects';
 import {TodoEffects} from './modules/todo/effects/todo.effects';
 import {reducers} from './modules/todo/selectors/selectors';
+import {TranslateCompiler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpClient} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -23,6 +31,17 @@ import {reducers} from './modules/todo/selectors/selectors';
     NgbModule.forRoot(),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([TodoEffects]),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      compiler: {
+        provide: TranslateCompiler,
+        useClass: TranslateMessageFormatCompiler
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

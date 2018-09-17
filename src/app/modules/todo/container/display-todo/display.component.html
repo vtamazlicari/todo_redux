@@ -2,8 +2,8 @@
 <table class="table table-hover" *ngIf="tasks">
   <thead>
   <tr>
-    <td>Task Id</td>
-    <td>Task Name</td>
+    <td translate>pluralization.form.id</td>
+    <td translate>pluralization.form.name</td>
   </tr>
   </thead>
   <tbody *ngFor="let task of tasks | async">
@@ -11,10 +11,10 @@
       <td>{{ task.id }}</td>
       <td>{{ task.name }}</td>
       <td>
-        <button (click)="deleteTodo(task)" class="btn btn-danger">Delete</button>
+        <button (click)="deleteTodo(task)" class="btn btn-danger" translate>pluralization.form.button_delete</button>
       </td>
       <td>
-        <button (click)="openEditModal(task)" class="btn btn-success">Edit</button>
+        <button (click)="openEditModal(task)" class="btn btn-success" translate>pluralization.form.button_edit</button>
       </td>
   </tr>
   </tbody>

@@ -7,6 +7,7 @@ import {LayoutComponent} from './components/layout/layout.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   imports: [

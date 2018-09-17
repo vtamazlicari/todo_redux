@@ -7,10 +7,17 @@ import {TodoListComponent} from './container/todo-list/todo-list.component';
 import {TodoRoute} from './todo.route';
 import {DisplayComponent} from './container/display-todo/display.component';
 import {TodoModalComponent} from './container/todo-list/todo-modal/todo-modal.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {StoreModule} from '@ngrx/store';
 import {addTaskReducer} from './reducers/todo.reducers';
 import {SharedModule} from '../../shared/shared.module';
+import {TranslateCompiler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   imports: [
@@ -21,7 +28,19 @@ import {SharedModule} from '../../shared/shared.module';
     ModalModule.forRoot(),
     HttpClientModule,
     StoreModule.forFeature('todo', addTaskReducer),
-    SharedModule
+    SharedModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      },
+      isolate: true,
+      compiler: {
+        provide: TranslateCompiler,
+        useClass: TranslateMessageFormatCompiler
+      }
+    })
   ],
   declarations: [
     TodoListComponent,
@@ -29,7 +48,7 @@ import {SharedModule} from '../../shared/shared.module';
     TodoModalComponent,
   ],
   entryComponents: [TodoModalComponent],
-  exports: [TodoListComponent, DisplayComponent]
+  exports: [TodoListComponent, DisplayComponent],
 })
 export class TodoModule {
 }

@@ -1,0 +1,19 @@
+{
+	"pluralization": {
+		"form": {
+			"button_add": "Aufgabe hinzufügen",
+			"button_delete": "Aufgabe löschen",
+			"button_edit": "Aufgabe bearbeiten",
+			"id": "Aufgabe id",
+			"name": "Aufgabe name"
+		},
+		"form_control": {
+			"require": {
+				"id": "ID ist erforderlich.",
+				"name": "Name ist erforderlich."
+			}
+		},
+		"language": "Englisch",
+		"text": "Hinzufügen, löschen oder ändern Sie Aufgaben in unserer Anwendung."
+	}
+}

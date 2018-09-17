@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ComponentFactory,
   ComponentFactoryResolver,
@@ -21,8 +20,7 @@ import {AlertComponent} from 'src/app/shared/components/alert/alert.component';
 @Component({
   selector: 'app-display',
   templateUrl: './display.component.html',
-  styleUrls: ['./display.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./display.component.css']
 })
 export class DisplayComponent implements OnInit, OnDestroy {
   @ViewChild ('errorRequest', {read: ViewContainerRef}) container;

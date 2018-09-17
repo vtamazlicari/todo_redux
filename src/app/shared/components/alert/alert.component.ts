@@ -1,18 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.css']
+  styleUrls: ['./alert.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertComponent implements OnInit {
 
-  @Input() errorMessage: string;
+  errorMessage: string;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.errorMessage);
   }
 
 }
